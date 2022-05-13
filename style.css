@@ -15,9 +15,13 @@ td {
     padding: 0;
 }
 
-.cell {
+td input {
     width: 50%;
     height: 50%;
     border: none;
     text-align: center;
+}
+
+.new {
+    color: green;
 }
