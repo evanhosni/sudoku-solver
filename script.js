@@ -33,39 +33,38 @@ document.querySelector('#solve').addEventListener('click',()=>{
         h1.value = grid[7][0]; h2.value = grid[7][1]; h3.value = grid[7][2]; h4.value = grid[7][3]; h5.value = grid[7][4]; h6.value = grid[7][5]; h7.value = grid[7][6]; h8.value = grid[7][7]; h9.value = grid[7][8];
         i1.value = grid[8][0]; i2.value = grid[8][1]; i3.value = grid[8][2]; i4.value = grid[8][3]; i5.value = grid[8][4]; i6.value = grid[8][5]; i7.value = grid[8][6]; i8.value = grid[8][7]; i9.value = grid[8][8];
     } else {
-        document.write("no solution  exists ")
+        alert("no solution  exists ")
     }
 })
 
-function isValid(board, row, col, k) {
+function check(grid, row, col, num) {
     for (let i = 0; i < 9; i++) {
-        const m = 3 * Math.floor(row / 3) + Math.floor(i / 3);
-        const n = 3 * Math.floor(col / 3) + i % 3;
-        if (board[row][i] == k || board[i][col] == k || board[m][n] == k) {
-          return false;
+        const x = 3 * Math.floor(row / 3) + Math.floor(i / 3); //finds box x axis
+        const y = 3 * Math.floor(col / 3) + i % 3; //finds box y axis
+        if (grid[row][i] == num || grid[i][col] == num || grid[x][y] == num) { //if num is found in relative row, col, or box
+            return false;
         }
     }
-    return true;
+    return true; //return true if cell's num passes check
 }
 
-
-function solve(data) {
-  for (let i = 0; i < 9; i++) {
-    for (let j = 0; j < 9; j++) {
-      if (data[i][j] == '') {
-        for (let k = 1; k <= 9; k++) {
-          if (isValid(data, i, j, k)) {
-            data[i][j] = `${k}`;
-          if (solve(data)) {
-           return true;
-          } else {
-           data[i][j] = '';
-          }
-         }
-       }
-       return false;
-     }
-   }
- }
- return true;
+function solve(grid) {
+    for (let row = 0; row < 9; row++) { //row iteration
+        for (let col = 0; col < 9; col++) { //col iteration
+            if (!grid[row][col]) { //if cell empty
+                for (let num = 1; num <= 9; num++) {
+                    if (check(grid, row, col, num)) { //if check returns true
+                        grid[row][col] = num; //sets cell value to num
+                        if (solve(grid)) {
+                            return true;
+                        } else {
+                            grid[row][col] = '';
+                        }
+                    }
+                }
+                return false; //if cell's check returns false for all values
+            }
+        }
+    }
+    return true; //return true if completely solved
 }
