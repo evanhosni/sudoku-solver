@@ -12,15 +12,17 @@ var i1 = document.getElementById('i1'); var i2 = document.getElementById('i2'); 
 
 document.querySelector('#solve').addEventListener('click',()=>{
 
-    let grid = [ [ a1.value, a2.value, a3.value, a4.value, a5.value, a6.value, a7.value, a8.value, a9.value ],
-    [ b1.value, b2.value, b3.value, b4.value, b5.value, b6.value, b7.value, b8.value, b9.value ],
-    [ c1.value, c2.value, c3.value, c4.value, c5.value, c6.value, c7.value, c8.value, c9.value ],
-    [ d1.value, d2.value, d3.value, d4.value, d5.value, d6.value, d7.value, d8.value, d9.value ],
-    [ e1.value, e2.value, e3.value, e4.value, e5.value, e6.value, e7.value, e8.value, e9.value ],
-    [ f1.value, f2.value, f3.value, f4.value, f5.value, f6.value, f7.value, f8.value, f9.value ],
-    [ g1.value, g2.value, g3.value, g4.value, g5.value, g6.value, g7.value, g8.value, g9.value ],
-    [ h1.value, h2.value, h3.value, h4.value, h5.value, h6.value, h7.value, h8.value, h9.value ],
-    [ i1.value, i2.value, i3.value, i4.value, i5.value, i6.value, i7.value, i8.value, i9.value ] ]
+    let grid = [
+        [ a1.value, a2.value, a3.value, a4.value, a5.value, a6.value, a7.value, a8.value, a9.value ],
+        [ b1.value, b2.value, b3.value, b4.value, b5.value, b6.value, b7.value, b8.value, b9.value ],
+        [ c1.value, c2.value, c3.value, c4.value, c5.value, c6.value, c7.value, c8.value, c9.value ],
+        [ d1.value, d2.value, d3.value, d4.value, d5.value, d6.value, d7.value, d8.value, d9.value ],
+        [ e1.value, e2.value, e3.value, e4.value, e5.value, e6.value, e7.value, e8.value, e9.value ],
+        [ f1.value, f2.value, f3.value, f4.value, f5.value, f6.value, f7.value, f8.value, f9.value ],
+        [ g1.value, g2.value, g3.value, g4.value, g5.value, g6.value, g7.value, g8.value, g9.value ],
+        [ h1.value, h2.value, h3.value, h4.value, h5.value, h6.value, h7.value, h8.value, h9.value ],
+        [ i1.value, i2.value, i3.value, i4.value, i5.value, i6.value, i7.value, i8.value, i9.value ]
+    ]
 
     if(solve(grid)) {
         a1.value = grid[0][0]; a2.value = grid[0][1]; a3.value = grid[0][2]; a4.value = grid[0][3]; a5.value = grid[0][4]; a6.value = grid[0][5]; a7.value = grid[0][6]; a8.value = grid[0][7]; a9.value = grid[0][8];
@@ -39,8 +41,9 @@ document.querySelector('#solve').addEventListener('click',()=>{
 
 function check(grid, row, col, num) {
     for (let i = 0; i < 9; i++) {
-        const x = 3 * Math.floor(row / 3) + Math.floor(i / 3); //finds box x axis
-        const y = 3 * Math.floor(col / 3) + i % 3; //finds box y axis
+        const x = 3 * Math.floor(row / 3) + Math.floor(i / 3);
+        const y = 3 * Math.floor(col / 3) + i % 3;
+        console.log(x,y)
         if (grid[row][i] == num || grid[i][col] == num || grid[x][y] == num) { //if num is found in relative row, col, or box
             return false;
         }
