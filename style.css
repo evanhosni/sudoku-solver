@@ -1,6 +1,15 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+header {
+    padding: 3em 0 2.5em;
+}
+
 table {
     border-collapse: collapse;
-    font-family: Calibri, sans-serif;
+    margin: 0 auto;
 }
 
 colgroup, tbody {
@@ -24,4 +33,14 @@ td input {
 
 .new {
     color: green;
+}
+
+button {
+    margin: 2em 1em 3em;
+    font-size: larger;
+    padding: 0.5em 1em;
+}
+
+sup {
+    font-size: x-small;
 }
